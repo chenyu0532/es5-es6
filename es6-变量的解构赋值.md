@@ -19,7 +19,8 @@
 	     foo是属性名，foo1是值，是首先找到属性名，然后把值赋给后面的值---> foo1 = "aaa"
 
 	作用于嵌套结构对象：
-		```const node = {
+		```
+		const node = {
 		  loc: {
 		    start: {
 		      line: 1,
@@ -30,5 +31,6 @@
 		let { loc, loc: { start }, loc: { start: { line }} } = node;
 		line // 1
 		loc  // Object {start: Object}
-		start // Object {line: 1, column: 5}```
+		start // Object {line: 1, column: 5}
+		```
 		ps:其实就看最里层的属性名对应的值就行。。。
