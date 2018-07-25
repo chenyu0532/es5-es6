@@ -1,0 +1,40 @@
+1. 	八进制用0o开头表示
+   	二进制用0b oB表示
+   	二八进制转为十进制 Number('xxxx');
+
+2. 	Number.isFinite(xxx):检查数值是否为有限的，只要不是数值，一律返回false
+   	Number.isNaN():检查数值是否为NaN，只要NaN，一律返回false
+   	Number.isInteger():检查一个数值是否为整数，注意 25和25.0被视为是同一个值
+
+3. 	用Number.parseInt()  来代替 parseInt()
+	用Number.parseFloat()  来代替 parseFloat()
+
+4.	Math.tronc() //返回整数部分。先转为数值，再取整，无法转为数字的返回NaN
+	例子：
+		Math.tronc(-4.7)--->-4
+		Math.tronc('123.45')--->123
+		Math.trunc(true) //1
+		Math.trunc(false) // 0
+		Math.trunc(null) // 0
+		Math.trunc(NaN);    // NaN
+		Math.trunc('foo');  //NaN
+
+5.  Math.sin() //判断一个值是正数还是负数。先转为数字，再判断，无法转的返回NaN
+ 			   //正数返回1  负数返回-1 0返回0
+
+6.  Math.cbrt() //求立方根。 先转为数字，再求，无法转的返回NaN
+
+7.  * Math.clz32() //返回一个数的32位无符号整数形式有多少个前导0
+	  Math.imul()   // 返回两个数以 32 位带符号整数形式相乘的结果，返回的也是一个 32 位的带符号整数
+	  Math.fround() //返回一个数的32位单精度浮点数形式。
+
+8.  Math.hypot(): //返回所有参数的平方和的平方根。   先转为数字，再求，无法转的直接返回NaN
+
+9.  * Math.expm1()： //返回 ex - 1，即Math.exp(x) - 1
+      Math.log1p(x)方法返回1 + x的自然对数，即Math.log(1 + x)。如果x小于-1，返回NaN
+      Math.log10(x)返回以 10 为底的x的对数。如果x小于 0，则返回 NaN。
+      Math.log2(x)返回以 2 为底的x的对数。如果x小于 0，则返回 NaN。
+
+10. 指数运算符 **  a ** 3  等价于 a * a * a
+				  a **= 4 等价于 a * a * a * a
+

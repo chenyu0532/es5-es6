@@ -34,3 +34,28 @@
 		start // Object {line: 1, column: 5}  
 		```
 		ps:其实就看最里层的属性名对应的值就行。。。
+
+		var {x, y = 5} = {x: 1};
+		x // 1
+		y // 5
+
+		var {x: y = 3} = {};
+		y // 3
+
+		只有当属性值不严格等于undefined时，默认值不会生效。
+
+4. 字符串的解构赋值：
+   
+    const [a, b, c, d, e] = 'hello';
+	a // "h"
+	b // "e"
+	c // "l"
+	d // "l"
+	e // "o"
+
+	let {length : len} = 'hello';
+	len // 5
+
+5. 函数参数的解构赋值：
+
+	
