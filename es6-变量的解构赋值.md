@@ -7,7 +7,7 @@
 2. 默认值：
 	let [x, y = 'b'] = ['a']; // x='a', y='b'   
 	let [x, y = 'b'] = ['a', undefined]; // x='a', y='b'
-	 等号左边是默认值，右边是要赋的值，es6中只有当右边的值严格为(===)undefined的时候，默认值才不会生效
+	 等号左边是默认值，右边是要赋的值，es6中只有当右边的值严格为(===)undefined的时候，默认值才会生效
 
 3. 对象的解构赋值
 	对象的解构与数组有一个重要的不同。数组的元素是按次序排列的，变量的取值由它的位置决定；而对象的属性没有次序，变量必须与属性同名，才能取到正确的值。
@@ -57,5 +57,49 @@
 	len // 5
 
 5. 函数参数的解构赋值：
+	要区分下面这两个例子：
+		function move({x = 0, y = 0} = {}) {
+		  return [x, y];
+		}
+		move({x: 3, y: 8}); // [3, 8]
+		move({x: 3}); // [3, 0]
+		move({}); // [0, 0]
+		move(); // [0, 0]
+
+		function move({x, y} = { x: 0, y: 0 }) {
+		  return [x, y];
+		}
+		move({x: 3, y: 8}); // [3, 8]
+		move({x: 3}); // [3, undefined]
+		move({}); // [undefined, undefined]
+		move(); // [0, 0]
+
+6. 解构赋值的用途：
+	交换变量的值  [x, y] = [y, x]
+
+	函数可以返回多个值： 
+		function func(){
+			return [1, 2, 3]
+		}
+		let [a, b, c] = func()
+
+		function example() {
+		  return {
+		    foo: 1,
+		    bar: 2
+		  };
+		}
+		let { foo, bar } = example();
+
+	提取json数据：
+
+		let jsonData = {
+		  id: 42,
+		  status: "OK",
+		  data: [867, 5309]
+		};
+		let { id, status, data: number } = jsonData;
+
+
 
 	

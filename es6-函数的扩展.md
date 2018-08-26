@@ -11,4 +11,35 @@
     	  foo() --->201;
     	  ```
 
-2.  
+2.  也可以和函数结合使用：
+		  function foo({x, y = 1}){
+				console.log(x, y)		  
+		  }
+		  foo({x:2}) --->2, 1   注意调用这个函数时，参数也要为对象
+
+	也可以这样用：
+		  ```
+		  function fetch(url, {body = "", method = "GET", headers = {}}){
+		  		console.log(method)
+		  }
+		  ```
+		  fetch("baidu", {}) --->GET
+		  fetch("baidu") --->error       ---》111
+
+		  ```
+		 function fetch(url, {body = "", method = "GET", headers = {}} = {}){
+		  		console.log(method)
+		  }
+		  ```
+		  fetch("baidu") --->GET        ---->>要注意111和这个的区别
+
+		  还有一种情况：
+		  function m1({x = 0, y = 0} = {})
+		  {
+		  		return [x, y];
+		  }
+		  function m2({x, y} = {x : 0, y: 0})
+		  {
+		  		return [x, y];
+		  }
+		  
