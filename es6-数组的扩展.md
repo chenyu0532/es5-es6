@@ -1,5 +1,5 @@
 1. 扩展运算符 ...
-	...[2, 3, 4]--->2,3,4把数组转为一个用逗号分隔的参数序列，要注意是数组
+	...[2, 3, 4]--->2,3,4把数组转为一个用逗号分隔的参数序列，要注意是数组。
 	例如：	
 		let arr1 = [0, 1, 2];
 		let arr2 = [3, 4, 5];
@@ -54,3 +54,35 @@
 														倒着数的时候，最末尾的元素时-1
 	[1, 2, 3, 4, 5].copyWithin(0, 3, 4)---->[4,2,3,4,5]
 	[1, 2, 3, 4, 5].copyWithin(0, -2, -1)---->[4,2,3,4,5]
+
+7. find----寻找第一个符合条件的数组成员，如果没有的话返回undefined
+	findIndex----功能跟find相似，只是没有符合条件的话会返回-1
+	[1, 5, 10, 15].find(function(value, index, arr) {   //三个参数依次为：当前值 当前位置 原数组
+	  return value > 9;
+	}) // 10
+	也可以这么用：
+	function f(v){
+	  return v > this.age;
+	}
+	let person = {name: 'John', age: 20};
+	[10, 12, 26, 15].find(f, person);    //这里find函数接受了第二个参数，用来绑定回调函数里的this
+	// 26 
+
+8. fill(n, start, end)----把start---end的位置的值换成n ，如果start end省略则代表全部换成n
+	如果填充的是对象的话，则是浅拷贝
+	let arr = new Array(3).fill({name: "Mike"});
+	arr[0].name = "Ben";
+	// [{name: "Ben"}, {name: "Ben"}, {name: "Ben"}]
+
+9. 数组.keys()---返回k的集合
+	数组.values()---返回value的集合
+	数组.entries()---返回k-value的集合
+	都可以接着用for(let index of xxx)来吧遍历
+
+10. 数组.includes(n, start)---从start位置搜索，返回数组是否包含值n，如果start<0 则是从-start位置寻找
+	作用跟indexOf差不多，只不过indexOf返回的是位置或-1
+
+11. 数组.flat(Infinity)----将嵌套的数组转为一维数组
+	[1, [2, [3]]].flat(Infinity)  // [1, 2, 3]
+
+12. 不能让数组有空位，因为各个函数对空位的处理不是很统一
