@@ -48,4 +48,50 @@
 	let difference = new Set([...a].filter(x => !b.has(x)));
 	// Set {1}
 
-2. Map结构：
+2. Map结构：是键值对的结构，其建并不一定是字符串
+	const m = new Map();
+	const o = {p: 'Hello world'};
+	m.set(o, 'content');
+	m.get(o) //content,如果没有键，则返回undefined
+
+	m.has(键名)
+	m.delete(键名)
+
+	也可以接受一个数组做参数
+	const m = new Map({
+		['name', '张三'],
+		['age', 18],
+	});
+	m.size // 2
+	map.get('name') //张三
+
+	map中的键是根内存地址绑定的，只要内存地址不用，就视为不同的键
+	特殊的是 true和'true'是两个键， undefined和null是两个键， NaN是一个键
+
+	map转数组：
+		const map = new Map([
+		  [1, 'one'],
+		  [2, 'two'],
+		  [3, 'three'],
+		]);
+
+		[...map.keys()]
+		// [1, 2, 3]
+
+		[...map.values()]
+		// ['one', 'two', 'three']
+
+		[...map.entries()]
+		// [[1,'one'], [2, 'two'], [3, 'three']]
+
+		[...map]
+		// [[1,'one'], [2, 'two'], [3, 'three']]
+
+	结合map filter方法：
+		const map0 = new Map()
+		map0.set(1, 'a')
+		map0.set(2, 'b')
+		map0.set(3, 'c');
+		[...map0].filter(([k, v])=>k < 3)
+
+
