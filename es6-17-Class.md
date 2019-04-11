@@ -1,4 +1,4 @@
-```
+
 1. 	class Point{
 		constructor(x, y){
 			this.x = x;
@@ -12,14 +12,22 @@
 	point.toString()
 
 	其中constructor可以省略，在内部会自动生成一个空的constructor,其中在类的内部定义的函数
-	都是不可枚举的(即不能被for...in所找到)
+	都是不可枚举的(即不能被for...in所找到)，其返回值实例对象，即this
 
 	constructor里定义的值都是point自身的属性，因为定义在this上
 	而toString是原型对象即Point的属性
 
-2.	要调用类中的静态方法也是直接 类名.xxxx();
+2.  也可以这样定义类：
+	const MyClass = class Me {
+	  	getClassName() {
+	    	return Me.name;
+	  	}
+	};
 
-3.	//可以这样把变量_count写到constructor的外面，访问的时候要加this
+
+3.	要调用类中的静态方法也是直接 类名.xxxx();
+
+4.	//可以这样把变量_count写到constructor的外面，访问的时候要加this
 	class IncreasingCounter {
 		  _count = 0;
 		  get value() {
@@ -30,8 +38,7 @@
 		    this._count++;
 		  }
 	}
-
-4. class OtherPoint extends Point {
+5. class OtherPoint extends Point {
 		contstructor(x, y, color){
 			super(x, y);
 			this.color = color
