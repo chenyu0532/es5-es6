@@ -35,7 +35,7 @@
 4.	//可以这样把变量_count写到constructor的外面，访问的时候要加this
 	class IncreasingCounter {
 		  _count = 0;
-		  get value() {
+		  getvalue() {
 		    console.log('Getting the current value!');
 		    return this._count;
 		  }
@@ -56,3 +56,22 @@
 	如果子类没有constructor，super会被默认添加，不过推荐上一种写法
 	class ColorPoint extends Point {
 	}
+
+6. super关键字有两种用法：
+		一是放在子类的constructor里，代表父类的构造函数，不过需要注意的是，super虽然代表了父类的构造函数，
+		  但是返回的依然是子类的实例
+		二是作为对象时，在普通方法里指向父类的原型对象；在静态方法里，指向防护类
+			class A {
+			  p() {
+			    return 2;
+			  }
+			}
+
+			class B extends A {
+			  constructor() {
+			    super();
+			    console.log(super.p()); // 2
+			  }
+			}
+
+			let b = new B();
