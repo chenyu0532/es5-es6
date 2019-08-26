@@ -28,3 +28,7 @@ ES5 对应的一般是module.exports = {}   和   require
 	
 	export default xxxx;
 	import yyyy from '' // 其中用default的时候，yyyy可以是任意的名字，也可以用不用{}，不过为了好区分，还是用类名比较好
+
+
+在es5中，用module.exports或exports导出模块，用require引入模块。
+在es6中，用export和export default导出模块，import导入模块。
