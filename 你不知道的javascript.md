@@ -54,3 +54,50 @@
 				var a
 				console.log( a ); // undefined
 				a = 2;
+
+	闭包：在任何同步或异步的任务中，只要使用了回调函数，实际上就是在使用闭包
+
+	模块是闭包的一个重要应用
+		function CoolModule() {
+			var something = "cool";
+			var another = [1, 2, 3];
+			function doSomething() {
+				console.log( something );
+			}
+			function doAnother() {
+				console.log( another.join( " ! " ) );
+			}
+			return {
+				doSomething: doSomething,
+				doAnother: doAnother
+			};
+		}
+		var foo = CoolModule();
+		foo.doSomething(); // cool
+		foo.doAnother(); // 1 ! 2 ! 3
+
+		模块模式的两个必要条件：
+		1  必须有外部的封闭函数，该函数必须至少被调用一次（每次调用都会创建一个新的模块实例）。
+		2. 封闭函数必须返回至少一个内部函数，这样内部函数才能在私有作用域中形成闭包，并
+			且可以访问或者修改私有的状态。
+
+			var foo = (function CoolModule(id) {
+			function change() {
+				// 修改公共 API
+				publicAPI.identify = identify2;
+			}
+			function identify1() {
+				console.log( id );
+			}
+			function identify2() {
+				console.log( id.toUpperCase() );
+			}
+			var publicAPI = {
+				change: change,
+				identify: identify1
+			};
+				return publicAPI;
+			})( "foo module" );
+			foo.identify(); // foo module
+			foo.change();
+			foo.identify(); // FOO MODULE
