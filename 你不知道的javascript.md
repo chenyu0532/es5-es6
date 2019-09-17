@@ -101,3 +101,21 @@
 			foo.identify(); // foo module
 			foo.change();
 			foo.identify(); // FOO MODULE
+
+2. this相关：
+
+	// 一道经典题
+	function foo() {
+		var a = 2;
+		this.bar();
+	}
+	function bar() {
+		console.log( this.a );
+	}
+	foo();
+
+	this 实际上是在函数被调用时发生的绑定，它指向什么完全取决于函数在哪里被调用。
+	最关键的是要找出调用栈，即最后一次的位置
+
+	有4条规则：
+		1 默认绑定
