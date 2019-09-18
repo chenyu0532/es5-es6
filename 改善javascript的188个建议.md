@@ -30,3 +30,31 @@
 		var a = (1,2,3,4)--->a = 4
 		a = 1,2,3,4 --->a = 1
 		var a = 1,2,3,4 --->a = null
+
+7.  ****最好把hasOwnProperty当做一个函数来用，用来判断onject是否有某个key
+
+8.  不要使用类型构造器 new Function   new Array  new String等等
+
+9.  不要使用new运算符
+
+10.	if判断语句最好使用 if(1===a) 这种形式
+
+11.	循环结构中，需要动态改变循环变量时候最好使用while，对于静态的循环变量则用for
+
+12. 迭代：待补充
+
+13. 使用制表：
+		例如：计算factorial(6)   factorial(7)   factorial(8) 用常规递归的话做的重复工作太多
+		用：
+			function factorial(n) {
+				if (factorial.cache) {
+					factorial.cache = {
+						'0':1,
+						'1':1
+					}
+				}
+				if (factorial.cache.hasOwnProperty(n)) {
+					factorial.cache[n] = n * factorial(n - 1);
+				}
+				return factorial.cache[n];
+			}
