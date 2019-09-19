@@ -115,7 +115,40 @@
 	foo();
 
 	this 实际上是在函数被调用时发生的绑定，它指向什么完全取决于函数在哪里被调用。
-	最关键的是要找出调用栈，即最后一次的位置
+	最关键的是要找出调用栈，即最后一次调用的位置
+
+	注：严格模式下this默认指向undefined，非严格模式下this指向window，一般不要混用这两个模式
 
 	有4条规则：
 		1 默认绑定
+		2 隐式绑定：使用对象上下文来引用函数时，函数里的this就会绑定到这个对象。只有最顶层或者说最后一层会影响调用位置
+		  隐式丢失：意思是被隐式绑定的函数会丢失绑定对象，即this会应用默认绑定
+					例子：比如
+
+							function foo() {
+								console.log( this.a );
+							}
+							var obj = {
+								a: 2,
+								foo: foo
+							};
+							var bar = obj.foo; // 函数别名！
+							var a = "oops, global"; // a 是全局对象的属性
+							bar(); // "oops, global"
+
+						又比如：在传入回调函数时：
+							function foo() {
+								console.log( this.a );
+							}
+							function doFoo(fn) {
+								// fn 其实引用的是 foo
+								fn(); // <-- 调用位置！
+							}
+							var obj = {
+								a: 2,
+								foo: foo
+							};
+							var a = "oops, global"; // a 是全局对象的属性
+							doFoo( obj.foo ); // "oops, global"
+
+		3 显式绑定： call apply:两者的第一个参数是一个对象，它们会把这个对象绑定到this ，接着在调用函数时指定这个 this 。
