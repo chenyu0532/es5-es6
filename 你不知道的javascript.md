@@ -102,7 +102,7 @@
 			foo.change();
 			foo.identify(); // FOO MODULE
 
-2. this相关：
+2. this相关：重点，反复看
 
 	// 一道经典题
 	function foo() {
@@ -151,4 +151,51 @@
 							var a = "oops, global"; // a 是全局对象的属性
 							doFoo( obj.foo ); // "oops, global"
 
-		3 显式绑定： call apply:两者的第一个参数是一个对象，它们会把这个对象绑定到this ，接着在调用函数时指定这个 this 。
+		3 显式绑定： call apply:两者的第一个参数是一个对象，它们会把这个对象绑定到this ，接着在调用函数时指定这个 this ，不可变，
+					如果参数传入了null或undefined，则为默认绑定。
+					es5中提供了bind函数
+
+					call apply bind的异同：
+						相同：都是用来改变函数的this对象的指向的；第一个参数都是this要指向的对象；都可以利用后续参数传参。
+						不同：call apply都是对函数的直接调用；bind返回的仍然是函数，要执行的话需要加(param1 ... paramn)
+							  call的参数可以有多个，apply的参数必须只有一个，如果要传多个，可以用数组等进行封装
+		4 new 不过不推荐使用
+
+		上述4种优先级的顺序是：new  >>>>  call apply bind  >>>>>  是否在某个上下文的对象中调用，即隐式绑定 >>>>> 默认
+
+		5 箭头函数：
+			es6中的箭头函数并不在上述规则以内，一旦绑定就不能修改
+			箭头函数需要注意的是：函数体内的this对象，就是定义生效时所在的对象，而不是使用生效时所在的对象。
+							实际原因是箭头函数根本没有自己的this，导致内部的this就是外层代码块的this。
+			例子：function foo() {
+				  setTimeout(() => {
+				    console.log('id:', this.id);
+				  }, 100);
+				}
+
+				var id = 21;
+
+				foo.call({ id: 42 });--->42, 解释：定义时，foo的this指向的是42，当延时100毫秒以后
+
+				function foo() {
+				  setTimeout(() => {
+				    console.log('id:', this.id);
+				  }, 100);
+				}
+
+				var id = 21;
+
+				foo.call({ id: 42 });--->42, 解释：定义时，foo的this指向的是42，当延时100毫秒以后
+
+		不过应该在下列情形下尽量不要使用箭头函数：
+			1 在对象方法内不要使用：
+				例子：  this.food = "banana";
+						let obj = {
+						    food: "strawberry",
+						    log: () => {
+						        console.log(this.food);
+						    }
+						};
+						obj.log(); // 打印"banana" ：箭头函数自身没有 this 会导致自动继承外层的 this
+
+			3 上下文是可变的，动态的，那么不要使用箭头函数

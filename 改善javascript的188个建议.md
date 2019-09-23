@@ -58,3 +58,49 @@
 				}
 				return factorial.cache[n];
 			}
+
+14. 获取字节长度：
+		String.prototype.lengthB = function() {
+			let b = 0, l = this.length;
+			if (l) {
+				for(let i = 0; i < l; i++) {
+					if (this.charCodeAt(i) > 255) {
+						b += 2;
+					} else {
+						b += 1;
+					}
+				}
+				return b;
+			} else {
+				return 0;
+			}
+		}
+
+15. 大量字符串连接尽量不要用+=
+
+16. ****检测是否为数组：
+		let isArray = function(value) {
+			return Object.prototype.toString.apply(value) === '[Object Array]';
+		}
+
+17. 构建二维数组：
+	Array.prototype = function(m, n, value) {
+		let a, mat = [];
+		for(let i = 0; i < m; i++) {
+			a = [];
+			for(let j = 0; j < n; j++) {
+				a[j] = value;
+			}
+			mat[i] = a;
+		}
+		return mat;
+	}
+
+18. 奇葩特性，实际并没有用，看到不要发懵就好
+	js中的数组下标可以是任何数据类型，任何表达式
+	let a = [];
+	a[-1] = 1;
+	console.log(a.length)-->0 // 数组长度没变
+	console.log(a[-1])--->1  //奇葩的有值
+	a[true] = 1;
+	console.log(a[true])--->1 // 奇葩的有值
