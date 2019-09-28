@@ -104,3 +104,6 @@
 	console.log(a[-1])--->1  //奇葩的有值
 	a[true] = 1;
 	console.log(a[true])--->1 // 奇葩的有值
+
+
+19. consolelog     
