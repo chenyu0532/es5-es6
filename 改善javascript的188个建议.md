@@ -106,4 +106,59 @@
 	console.log(a[true])--->1 // 奇葩的有值
 
 
-19. consolelog     
+19. 通过Function扩展函数：
+		Function.prototype.method = function(name, func) {
+			if (!this.prototype[name]) {
+				this.prototype[name] = func;
+				return this;
+			}
+		}
+	利用上面的函数可以扩展一些函数，例如提取数字的整数部分：
+		Number.method('integer', function() {
+			return Math[this < 0? 'ceil': 'floor'](this);
+		});
+	(以前没注意的一个知识点：
+		Math.ceil()：根据“ceil”的字面意思“天花板”去理解；
+		例如：
+		Math.ceil(11.46)=Math.ceil(11.68)=Math.ceil(11.5)=12
+		Math.ceil(-11.46)=Math.ceil(-11.68)=Math.ceil(-11.5)=-11
+		 
+		Math.floor()：根据“floor”的字面意思“地板”去理解；
+		例如：
+		Math.floor(11.46)=Math.floor(11.68)=Math.floor(11.5)=11
+		Math.floor(-11.46)=Math.floor(-11.68)=Math.floor(-11.5)=-12)
+
+	// 去除字符串两边的空格
+	String.method('trim', function() {
+		return this.replace(/^\s+|\s+$/g, '');
+	});
+
+20. 函数的调用和引用：
+		引用的例子：
+			function f() {
+				var x = 5;
+				return x;
+			}
+			var a = f;
+			var b = f;
+			console.log(a === b) // true
+			因为函数引用的本质是，多个变量存储的相同的入口指针
+
+		调用的例子：
+			function f() {
+				var x = 5;
+				return function() {
+					return x;
+				}
+			var a = f();
+			var b = f();
+			console.log(a === b) // false，虽然都是相同的闭包，但是他们存储在不同的变量中，即地址指针是不同的
+
+			function f() {
+				var x = 5;
+				return x;
+			}
+			var a = f();
+			var b = f();
+			console.log(a === b) // true
+			函数调用时执行该函数，，比较的是值，而不是入口指针
