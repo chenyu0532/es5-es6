@@ -162,3 +162,63 @@
 			var b = f();
 			console.log(a === b) // true
 			函数调用时执行该函数，，比较的是值，而不是入口指针
+
+21. 使用函数来记录先前操作的结果，避免无谓的运算。
+	例如：
+		let fibonacci = (function() {
+			let memo = [0, 1];
+			let fib = function(n) {
+				let result = memo[n];
+				if (typeof result !== 'number') {
+					result = fib(n - 1) + fib(n - 2);
+					memo[n] = result;
+				}
+				return result;
+			}
+			return fib;
+		}());
+
+22. 链式语法：很多的函数实现是没有返回值的，即返回undefined，如果想让这些方法返回this，则需要用链式语法。
+			这样就可以连续调用同一个对象的很多方法。
+			例如：String.method('trim',function(){
+					return this.replace(/^\s+|\s+$/g,'');
+				 });
+				String.method('writeln',function(){
+					document.writeln(this);
+					return this;
+				});
+				String.method('alert',function(){
+					window.alert(this);
+					return this;
+				});
+				var str="abc";
+				str.trim().writeln().alert();
+
+23. 分支函数：在判断浏览器兼容性的问题时，常常用这个方法，通过下面的方法可以看出，可以声明数个不同名称的对象，但是这些对象里都有一个名称相同的方法。
+	例如：；let XHR = function() {
+				let standard = {
+					createXHR: function() {
+						return new method1();
+					}
+				}
+				let new1 =  {
+					createXHR: function() {
+						return new method2();
+					}
+				}
+				let new2 =  {
+					createXHR: function() {
+						return new method3();
+					}
+				}
+			}
+			if (standard.createXHR()) {
+				return standard;
+			} else {
+				if(new1.createXHR()) {
+					return new1;
+				} else {
+					return new2;
+				}
+			}
+24. 

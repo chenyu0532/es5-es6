@@ -159,7 +159,7 @@
 						相同：都是用来改变函数的this对象的指向的；第一个参数都是this要指向的对象；都可以利用后续参数传参。
 						不同：call apply都是对函数的直接调用；bind返回的仍然是函数，要执行的话需要加(param1 ... paramn)
 							  call的参数可以有多个，apply的参数必须只有一个，如果要传多个，可以用数组等进行封装
-		4 new 不过不推荐使用
+		4 new 不推荐使用
 
 		上述4种优先级的顺序是：new  >>>>  call apply bind  >>>>>  是否在某个上下文的对象中调用，即隐式绑定 >>>>> 默认
 
@@ -168,16 +168,6 @@
 			箭头函数需要注意的是：函数体内的this对象，就是定义生效时所在的对象，而不是使用生效时所在的对象。
 							实际原因是箭头函数根本没有自己的this，导致内部的this就是外层代码块的this。
 			例子：function foo() {
-				  setTimeout(() => {
-				    console.log('id:', this.id);
-				  }, 100);
-				}
-
-				var id = 21;
-
-				foo.call({ id: 42 });--->42, 解释：定义时，foo的this指向的是42，当延时100毫秒以后
-
-				function foo() {
 				  setTimeout(() => {
 				    console.log('id:', this.id);
 				  }, 100);
