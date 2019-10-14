@@ -189,3 +189,12 @@
 						obj.log(); // 打印"banana" ：箭头函数自身没有 this 会导致自动继承外层的 this
 
 			3 上下文是可变的，动态的，那么不要使用箭头函数
+
+3. 对象：js六种主要类型：string number boolean null undefined object
+		   九种内置对象：String Number Boolean Object Function Array Date RegExp(正则表达式) Error
+
+		a[b]:
+			1. b为string，如果不是string,则会先转成string。
+			2. b的字段可以是变量、可计算的
+
+		浅拷贝：Onject.assign(目标对象, 一个或多个源对象)
