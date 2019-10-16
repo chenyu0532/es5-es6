@@ -198,3 +198,23 @@
 			2. b的字段可以是变量、可计算的
 
 		浅拷贝：Onject.assign(目标对象, 一个或多个源对象)
+
+		a in myobject：会查询整个原型链
+		hasOwnProperty()：只会检查属性是否在object上
+
+		构造函数：class CoolGuy {
+					specialTrick = nothing
+					CoolGuy( trick ) {
+						specialTrick = trick
+					}
+					showOff() {
+						output( "Here's my trick: ", specialTrick )
+					}
+				}
+				let Joe = new CoolGuy( "jumping rope" )
+				Joe.showOff()
+				//CoolGuy 类有一个 CoolGuy() 构造函数，执行 new CoolGuy() 时实际上调用的就是
+					它。构造函数会返回一个对象（也就是类的一个实例），之后我们可以在这个对象上调用
+					showOff() 方法，来输出指定 CoolGuy 的特长。 类构造函数属于类，而且通常和类同名
+
+		
