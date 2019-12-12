@@ -3,7 +3,8 @@ Promise是异步解决方案，有3种状态，pending（进行中）、fulfille
 
 1. 	const promise = new Promise((resolve, reject)=>{
 		if(/成功/){
-			resolve(value);			
+			resolve(value);
+			throw new Error('error') // 这句是无效的，因为一旦执行了resolve或reject，就相当于回调结束了	
 		} else {
 			reject(error);
 		}
@@ -14,10 +15,11 @@ Promise是异步解决方案，有3种状态，pending（进行中）、fulfille
 		//success
 	}).catch(function(error) {
 		// error
-	}).finally(function() {
-		//总是会执行
-	});
-	注：then方法返回的也是一个新的Promise实例
+	})
+	////这里也可以写成箭头函数
+	注：then是监听resolve方法的，catch是监听reject的.
+		then方法返回的也是一个新的Promise实例，所以可以有多个连续的then,同时，参数也是一级一级的传下去的
+		then可以有多个，catch由一个就行，错误总会被捕捉到
 
 
 	//下面是一个游戏中常用的在canvas模式下加载图片的例子
