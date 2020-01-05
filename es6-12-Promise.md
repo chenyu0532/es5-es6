@@ -20,7 +20,8 @@ Promise是异步解决方案，有3种状态，pending（进行中）、fulfille
 	////这里也可以写成箭头函数
 	注：then是监听resolve方法的，catch是监听reject的.
 		then方法返回的也是一个新的Promise实例，所以可以有多个连续的then,同时，参数也是一级一级的传下去的
-		then可以有多个，catch由一个就行，错误总会被捕捉到
+		then可以有多个，catch总是会捕捉到在它之前的发生的同步错误
+		只要不是在catch语句里的执行，只要遇到错误(函数执行错误或者throw new Error(''))都会被catch捕捉到
 
 
 	//下面是一个游戏中常用的在canvas模式下加载图片的例子
