@@ -19,7 +19,7 @@ ES6 模块不是对象，而是通过export命令显式指定输出的代码，�
 	export{v1, v2, fun1, fun2};
 	或者export {vv1 as v1, vv2 as v2, fun1, fun2}
 
-	在export的模块内，值都是可以动态变化的
+	在export的模块内，值都是可以动态变化的，在在某个位置修改了对象的值，在其他模块里是可以看到修改后的值的
 	CommonJS模块输出的值是值的缓存，不会变化，不同的脚本加载这个接口，得到的都是同样的实例
 	
 	export default xxxx;
