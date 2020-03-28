@@ -1,3 +1,4 @@
+```
 1. 	尽量不要用window.xxx的全局变量，可以用
 	比如：
 		const PlayerData = function() {
