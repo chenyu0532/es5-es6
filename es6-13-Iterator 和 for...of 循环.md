@@ -13,6 +13,6 @@
 			Object.values(obj); // 返回一个包含该对象全部的值的数组
 			Object.entries(obj) —— 返回一个包含该对象全部 [key, value] 键值对的数组。
 			再用数组的方法
-		(2) for...in
+		(2) for...in：是可以查找一条完整的原型链上所有属性
 
 
