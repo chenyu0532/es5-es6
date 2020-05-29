@@ -81,3 +81,12 @@ Promise是异步解决方案，有3种状态，pending（进行中）、fulfille
 		  .catch(error => console.log(error));
 		这种情况下p1就决定了p2的状态，3s后p1输出的是reject，所以会触发p2的catch
 
+3.  推荐的写法：尽量不要使用then方法的第二个参数
+	promise
+	  .then(function(data) { //cb
+	    // success
+	  })
+	  .catch(function(err) {
+	    // error
+	  });
+
